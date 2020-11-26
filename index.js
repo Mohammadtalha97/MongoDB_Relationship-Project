@@ -15,8 +15,8 @@ if (!process.env.JWT_SECRET_KEY) {
 
 connectDB();
 
-app.use(bodyParser.json({ limit: "200mb" }));
-
+// app.use(bodyParser.json({ limit: "200mb" }));
+app.use(Express.json());
 app.use("/api/user/", user);
 
 const PORT = process.env.PORT || 8000;
