@@ -31,7 +31,7 @@ export const studentDetails = async (req, res) => {
 };
 
 export const getStudentDetails = async (req, res) => {
-  throw new Error("Could not get the student details");
+  // throw new Error("Could not get the student details");
   const result = await Students.find();
   res.status(200).send(result);
 };

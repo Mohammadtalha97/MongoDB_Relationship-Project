@@ -39,7 +39,12 @@ export const getStudentLecturerDetails = async (req, res) => {
   res.send(data);
 };
 export const getStudentLecturerById = async (req, res) => {
-  const result = await StudentLecturer.findById(req.params.id);
+  // const result = await StudentLecturer.findById(req.params.id);
+
+  const result = await StudentLecturer.find({ _id: req.params.id })
+    .populate("student", "name email -_id")
+    .populate("lecture", "name email -_id");
+
   if (!result) return res.status(400).send("Record Not Found");
   res.send(result).status(200);
 };

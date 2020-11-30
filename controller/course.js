@@ -3,6 +3,9 @@ import Course from "../model/courses.js";
 
 export const addCourse = async (req, res) => {
   try {
+    const courseIsExist = await Course.findOne({ name: req.body.name });
+    if (courseIsExist) return res.status(400).send("Course is already exists");
+
     const course = new Course(req.body);
     await course.save();
     res.status(201).send("Course Added Succesfully");

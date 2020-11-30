@@ -9,6 +9,7 @@ import student from "../routes/student.js";
 import studentCourse from "../routes/studentCourse.js";
 import studentLecturer from "../routes/studentLecturer.js";
 import user from "../routes/user.js";
+import query from "../routes/query.js";
 
 const starting = (app) => {
   app.use(Express.json());
@@ -20,6 +21,7 @@ const starting = (app) => {
   app.use("/api/studentCourse", studentCourse);
   app.use("/api/studentLecture", studentLecturer);
   app.use("/api/lecturerCourse", lecturerCourse);
+  app.use("/api/query", query);
   app.use(error);
 };
 
