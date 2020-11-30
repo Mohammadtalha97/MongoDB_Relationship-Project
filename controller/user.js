@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import _ from "lodash";
+import asyncMiddleware from "../middleware/async.js";
 
 import User from "../model/user.js";
 import {

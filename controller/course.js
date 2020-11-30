@@ -1,5 +1,5 @@
-import Course from "../model/courses.js";
 import mongoose from "mongoose";
+import Course from "../model/courses.js";
 
 export const addCourse = async (req, res) => {
   try {
@@ -11,52 +11,34 @@ export const addCourse = async (req, res) => {
   }
 };
 
-export const getAllCourse = async (req, res) => {
-  try {
-    const result = await Course.find();
-    res.send(result).status(200);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+export const getAllCourse = async (req, res, next) => {
+  const result = await Course.find();
+  res.send(result).status(200);
 };
 
 export const deleteCourseById = async (req, res) => {
-  try {
-    const course = await Course.findById(req.params.id);
-    if (!course) return res.status(400).send("No Record Found");
-    await course.remove();
-    res.send("Course Removed Successfully");
-  } catch (err) {
-    res.send(err).status(500);
-  }
+  const course = await Course.findById(req.params.id);
+  if (!course) return res.status(400).send("No Record Found");
+  await course.remove();
+  res.send("Course Removed Successfully");
 };
 
 export const getCourseById = async (req, res) => {
-  try {
-    const course = await Course.findById(req.params.id);
-    if (!course) return res.status(400).send("Record Not Found");
-
-    res.send(course).status(200);
-  } catch (err) {
-    res.send(err).status(500);
-  }
+  const course = await Course.findById(req.params.id);
+  if (!course) return res.status(400).send("Record Not Found");
+  res.send(course).status(200);
 };
 
 export const editCourseNameById = async (req, res) => {
-  try {
-    const result = await Course.findOneAndUpdate(
-      { _id: mongoose.Types.ObjectId(req.params.id) },
-      req.body,
-      { rawResult: true }
-    );
-    if (!result.lastErrorObject.n) {
-      res.status(400).send("Record Not Found");
-    }
-
-    if (result.lastErrorObject.updatedExisting) {
-      res.status(200).send("Record Updated");
-    }
-  } catch (err) {
-    res.status(500).send(err);
+  const result = await Course.findOneAndUpdate(
+    { _id: mongoose.Types.ObjectId(req.params.id) },
+    req.body,
+    { rawResult: true }
+  );
+  if (!result.lastErrorObject.n) {
+    res.status(400).send("Record Not Found");
+  }
+  if (result.lastErrorObject.updatedExisting) {
+    res.status(200).send("Record Updated");
   }
 };

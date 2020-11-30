@@ -1,6 +1,8 @@
-import Lecturer from "../model/lecturers.js";
 import _ from "lodash";
 import mongoose from "mongoose";
+
+import asyncMiddleware from "../middleware/async.js";
+import Lecturer from "../model/lecturers.js";
 
 export const addLecturer = async (req, res) => {
   try {
@@ -20,57 +22,40 @@ export const addLecturer = async (req, res) => {
     }
   }
 };
-export const getAllLecturer = async (req, res) => {
-  try {
-    const lecturers = await Lecturer.find();
-    res.send(lecturers).status(200);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
-export const getLecturerById = async (req, res) => {
-  try {
-    const lecturer = await Lecturer.findById(req.params.id);
-    if (!lecturer) return res.status(400).send("Sorry Record Not Found");
+export const getAllLecturer = asyncMiddleware(async (req, res) => {
+  const lecturers = await Lecturer.find();
+  res.send(lecturers).status(200);
+});
+export const getLecturerById = asyncMiddleware(async (req, res) => {
+  const lecturer = await Lecturer.findById(req.params.id);
+  if (!lecturer) return res.status(400).send("Sorry Record Not Found");
+  res.send(lecturer).status(200);
+});
 
-    res.send(lecturer).status(200);
-  } catch (err) {
-    res.send(err).status(500);
-  }
-};
-export const updateLecturerById = async (req, res) => {
-  try {
-    const result = await Lecturer.findOneAndUpdate(
-      { _id: mongoose.Types.ObjectId(req.params.id) },
-      req.body,
-      { rawResult: true }
-    );
+export const updateLecturerById = asyncMiddleware(async (req, res) => {
+  const result = await Lecturer.findOneAndUpdate(
+    { _id: mongoose.Types.ObjectId(req.params.id) },
+    req.body,
+    { rawResult: true }
+  );
 
-    if (!result.lastErrorObject.n) {
-      res.status(400).send("Record Not Found");
-    }
-
-    if (result.lastErrorObject.updatedExisting) {
-      res.status(200).send("Record Updated");
-    }
-  } catch (err) {
-    res.send(err).status(500);
+  if (!result.lastErrorObject.n) {
+    res.status(400).send("Record Not Found");
   }
-};
-export const deleteLecturerById = async (req, res) => {
-  try {
-    const result = await Lecturer.findByIdAndRemove(
-      { _id: mongoose.Types.ObjectId(req.params.id) },
-      { rawResult: true }
-    );
-    console.log(result);
-    if (!result.lastErrorObject.n) {
-      res.status(400).send("Record Not Found");
-    }
-    if (result.value) {
-      res.status(200).send("Record Removed");
-    }
-  } catch (err) {
-    res.send(err).status(500);
+  if (result.lastErrorObject.updatedExisting) {
+    res.status(200).send("Record Updated");
   }
-};
+});
+export const deleteLecturerById = asyncMiddleware(async (req, res) => {
+  const result = await Lecturer.findByIdAndRemove(
+    { _id: mongoose.Types.ObjectId(req.params.id) },
+    { rawResult: true }
+  );
+  console.log(result);
+  if (!result.lastErrorObject.n) {
+    res.status(400).send("Record Not Found");
+  }
+  if (result.value) {
+    res.status(200).send("Record Removed");
+  }
+});
