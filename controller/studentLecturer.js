@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-import asyncMiddleware from "../middleware/async.js";
 import StudentLecturer from "../model/studentLecturer.js";
 
 export const addStudentLecturerDetails = async (req, res) => {
@@ -30,7 +29,7 @@ export const addStudentLecturerDetails = async (req, res) => {
     }
   }
 };
-export const getStudentLecturerDetails = asyncMiddleware(async (req, res) => {
+export const getStudentLecturerDetails = async (req, res) => {
   const data = await StudentLecturer.find()
     // .populate("student")
     // .populate("lecture");
@@ -38,13 +37,13 @@ export const getStudentLecturerDetails = asyncMiddleware(async (req, res) => {
     .populate("lecture", "name email -_id");
 
   res.send(data);
-});
-export const getStudentLecturerById = asyncMiddleware(async (req, res) => {
+};
+export const getStudentLecturerById = async (req, res) => {
   const result = await StudentLecturer.findById(req.params.id);
   if (!result) return res.status(400).send("Record Not Found");
   res.send(result).status(200);
-});
-export const updateStudentLecturerById = asyncMiddleware(async (req, res) => {
+};
+export const updateStudentLecturerById = async (req, res) => {
   const result = await StudentLecturer.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.params.id) },
     req.body,
@@ -57,11 +56,11 @@ export const updateStudentLecturerById = asyncMiddleware(async (req, res) => {
   if (result.lastErrorObject.updatedExisting) {
     res.status(200).send("Record Updated");
   }
-});
-export const deleteStudentLecturerById = asyncMiddleware(async (req, res) => {
+};
+export const deleteStudentLecturerById = async (req, res) => {
   const result = await StudentLecturer.findById(req.params.id);
   if (!result) return res.status(400).send("Record Not Found");
 
   await result.remove();
   res.send("StudentLecturer Removed Successfully").status(200);
-});
+};

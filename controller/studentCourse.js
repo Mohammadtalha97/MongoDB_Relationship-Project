@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-import asyncMiddleware from "../middleware/async.js";
 import StudentCourse from "../model/studentCourse.js";
 
 export const addStudentCourseDetails = async (req, res) => {
@@ -27,16 +26,16 @@ export const addStudentCourseDetails = async (req, res) => {
     }
   }
 };
-export const getStudentCourseDetails = asyncMiddleware(async (req, res) => {
+export const getStudentCourseDetails = async (req, res) => {
   const result = await StudentCourse.find();
   res.send(result).status(200);
-});
-export const getStudentCourseById = asyncMiddleware(async (req, res) => {
+};
+export const getStudentCourseById = async (req, res) => {
   const result = await StudentCourse.findById(req.params.id);
   if (!result) return res.status(400).send("Record Not Found");
   res.send(result).status(200);
-});
-export const updateStudentCourseById = asyncMiddleware(async (req, res) => {
+};
+export const updateStudentCourseById = async (req, res) => {
   const result = await StudentCourse.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.params.id) },
     req.body,
@@ -49,10 +48,10 @@ export const updateStudentCourseById = asyncMiddleware(async (req, res) => {
   if (result.lastErrorObject.updatedExisting) {
     res.status(200).send("Record Updated");
   }
-});
-export const deleteStudentCourseById = asyncMiddleware(async (req, res) => {
+};
+export const deleteStudentCourseById = async (req, res) => {
   const course = await StudentCourse.findById(req.params.id);
   if (!course) return res.status(400).send("No Record Found");
   await course.remove();
   res.send("StudentCourse Removed Successfully");
-});
+};

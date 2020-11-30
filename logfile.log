@@ -1,0 +1,24 @@
+{"message":"some","stack":"Error: some\n    at file:///D:/Mohammadtalha.Patel/Learning/Node/authentication_authorization/MyCode/code/index.js:46:7\n    at ModuleJob.run (internal/modules/esm/module_job.js:137:37)\n    at async Loader.import (internal/modules/esm/loader.js:179:24)","level":"error","timestamp":"2020-11-30T08:08:50.764Z"}
+{"message":"some","stack":"Error: some\n    at file:///D:/Mohammadtalha.Patel/Learning/Node/authentication_authorization/MyCode/code/index.js:46:7\n    at ModuleJob.run (internal/modules/esm/module_job.js:137:37)\n    at async Loader.import (internal/modules/esm/loader.js:179:24)","level":"error","timestamp":"2020-11-30T08:09:28.856Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:11:32.131Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:16:11.979Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:16:48.918Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:17:20.633Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:17:31.683Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:18:41.838Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:18:58.958Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:19:14.974Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:19:22.811Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:19:49.974Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:20:15.326Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:20:25.814Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:20:27.456Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:20:31.824Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:20:40.016Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:20:46.350Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:21:05.665Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:22:01.784Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:22:18.152Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:22:28.329Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:22:47.437Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2020-11-30T09:22:51.861Z"}

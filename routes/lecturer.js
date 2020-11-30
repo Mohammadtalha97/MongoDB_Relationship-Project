@@ -1,10 +1,10 @@
 import express from "express";
 
 import {
+  addLecturer,
   deleteLecturerById,
   getAllLecturer,
   getLecturerById,
-  addLecturer,
   updateLecturerById,
 } from "../controller/lecturer.js";
 

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-import Student from "./students.js";
 import Lecturer from "./lecturers.js";
+import Student from "./students.js";
 
 const studentLecturerSchema = new mongoose.Schema({
   student: {

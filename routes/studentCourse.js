@@ -1,10 +1,11 @@
 import express from "express";
+
 import {
   addStudentCourseDetails,
-  getStudentCourseDetails,
-  getStudentCourseById,
-  updateStudentCourseById,
   deleteStudentCourseById,
+  getStudentCourseById,
+  getStudentCourseDetails,
+  updateStudentCourseById,
 } from "../controller/studentCourse.js";
 
 const router = express.Router();

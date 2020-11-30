@@ -1,7 +1,7 @@
-import LecturerCourse from "../model/lecturerCourse.js";
-import asyncMiddleware from "../middleware/async.js";
-
 import mongoose from "mongoose";
+
+import LecturerCourse from "../model/lecturerCourse.js";
+
 export const addLecturerCourseDetails = async (req, res) => {
   try {
     let studentExits = await LecturerCourse.find({
@@ -29,20 +29,20 @@ export const addLecturerCourseDetails = async (req, res) => {
     }
   }
 };
-export const getLecturerCourseDetails = asyncMiddleware(async (req, res) => {
+export const getLecturerCourseDetails = async (req, res) => {
   const data = await LecturerCourse.find()
     .populate("lecturer")
     .populate("course");
   // .populate("student", "name email -_id")
   // .populate("lecture", "name email -_id");
   res.send(data).status(200);
-});
-export const getLecturerCourseById = asyncMiddleware(async (req, res) => {
+};
+export const getLecturerCourseById = async (req, res) => {
   const result = await LecturerCourse.findById(req.params.id);
   if (!result) return res.status(400).send("Record Not Found");
   res.send(result).status(200);
-});
-export const updateLecturerCourseById = asyncMiddleware(async (req, res) => {
+};
+export const updateLecturerCourseById = async (req, res) => {
   const result = await LecturerCourse.findOneAndUpdate(
     { _id: mongoose.Types.ObjectId(req.params.id) },
     req.body,
@@ -55,11 +55,11 @@ export const updateLecturerCourseById = asyncMiddleware(async (req, res) => {
   if (result.lastErrorObject.updatedExisting) {
     res.status(200).send("Record Updated");
   }
-});
-export const deleteLecturerCourseById = asyncMiddleware(async (req, res) => {
+};
+export const deleteLecturerCourseById = async (req, res) => {
   const result = await LecturerCourse.findById(req.params.id);
   if (!result) return res.status(400).send("Record Not Found");
 
   await result.remove();
   res.send("LecturerCourse Removed Successfully").status(200);
-});
+};
